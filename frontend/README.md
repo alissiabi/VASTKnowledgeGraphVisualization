@@ -1,44 +1,39 @@
-# .
+# Visual Analytics Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue 3 and D3 prototype for the VAST 2025 Design Challenge. The official MC1 knowledge graph is
+used as a case study for linked filtering, local topology exploration, temporal analysis, path
+discovery, comparison, and source-record verification.
 
-## Recommended IDE Setup
+## Setup
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Requirements:
 
-## Recommended Browser Setup
+- Node.js 20.19 or newer compatible version;
+- npm.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```powershell
+npm ci
+npm run dev -- --host 127.0.0.1
 ```
 
-### Compile and Hot-Reload for Development
+## Validation
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
+```powershell
+npm test
 npm run lint
+npm run build
+npm audit
 ```
+
+## Structure
+
+- `src/components/Dashboard.vue`: analytical state and linked-view coordination;
+- `src/components/EgoNetwork.vue`: directed radial network with zoom, pan, and evidence selection;
+- `src/data/graphTransforms.js`: lossless normalization of the official graph;
+- `src/data/relationshipSemantics.js`: shared MC1 relationship taxonomy;
+- `src/data/metrics.js`: transparent derived summaries and graph traversal;
+- `tests/`: focused tests for relationship semantics, metrics, and path direction;
+- `public/data/MC1_graph.json`: browser-served copy of the official dataset.
+
+The frontend loads the graph directly. A backend is optional and should be introduced only if
+larger datasets make browser-side filtering or traversal impractical.

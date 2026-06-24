@@ -1,6 +1,22 @@
 @import 'tailwindcss';
 
 @layer base {
+  :root {
+    --va-bg: #eef2f6;
+    --va-surface: #ffffff;
+    --va-surface-soft: #f8fafc;
+    --va-border: #cbd5e1;
+    --va-border-soft: #e2e8f0;
+    --va-text: #102033;
+    --va-muted: #64748b;
+    --va-focus: #2563eb;
+    --va-focus-soft: #dbeafe;
+    --va-blue: #2563eb;
+    --va-warm: #d97706;
+    --va-risk: #b45309;
+    --va-radius: 6px;
+  }
+
   html,
   body,
   #app {
@@ -8,6 +24,201 @@
   }
 
   body {
-    @apply m-0 bg-slate-50 text-slate-900 antialiased;
+    @apply m-0 antialiased;
+    overflow-x: hidden;
+    background: var(--va-bg);
+    color: var(--va-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.28);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .va-page {
+    @apply mx-auto w-full min-w-0 px-3 py-3 md:px-4;
+    max-width: 1480px;
+  }
+
+  .va-topbar {
+    @apply sticky top-0 z-10 border-b bg-white/95 px-4 py-2.5 backdrop-blur;
+    border-color: var(--va-border);
+  }
+
+  .va-topbar-inner {
+    @apply mx-auto flex w-full flex-col items-start justify-between gap-2 sm:flex-row sm:items-center sm:gap-3;
+    max-width: 1480px;
+  }
+
+  .va-brand-kicker {
+    @apply text-xs font-semibold;
+    color: var(--va-focus);
+  }
+
+  .va-brand-title {
+    @apply text-base font-semibold md:text-lg;
+    color: var(--va-text);
+  }
+
+  .va-nav-link {
+    @apply rounded px-3 py-1.5 text-sm font-medium transition;
+    color: var(--va-muted);
+  }
+
+  .va-nav-link:hover,
+  .va-nav-link.router-link-active {
+    background: var(--va-focus-soft);
+    color: var(--va-focus);
+  }
+
+  .va-card {
+    @apply min-w-0 rounded-md border bg-white;
+    border-color: var(--va-border);
+    box-shadow: none;
+  }
+
+  .va-card-pad {
+    @apply p-4;
+  }
+
+  .va-panel-title {
+    @apply text-sm font-semibold;
+    color: var(--va-text);
+  }
+
+  .va-panel-copy {
+    @apply text-sm leading-6;
+    color: var(--va-muted);
+  }
+
+  .va-control {
+    @apply w-full rounded border bg-white px-3 py-2 text-sm outline-none transition;
+    border-color: var(--va-border);
+    color: var(--va-text);
+  }
+
+  .va-control:focus {
+    border-color: var(--va-focus);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.13);
+  }
+
+  .va-button {
+    @apply rounded border px-3 py-2 text-sm font-medium transition;
+    border-color: var(--va-border);
+    color: var(--va-text);
+  }
+
+  .va-button:hover {
+    border-color: var(--va-focus);
+    background: var(--va-focus-soft);
+    color: var(--va-focus);
+  }
+
+  .va-button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  .va-icon-button {
+    @apply flex h-7 w-7 items-center justify-center rounded text-base font-semibold transition;
+    color: var(--va-text);
+  }
+
+  .va-icon-button:hover {
+    background: var(--va-focus-soft);
+    color: var(--va-focus);
+  }
+
+  .va-kpi-card {
+    @apply rounded-md border border-t-2 bg-white p-3;
+    border-color: var(--va-border);
+    border-top-color: var(--va-focus);
+  }
+
+  .va-chart-button {
+    @apply block w-full border-l-2 px-1 py-2 text-left transition;
+    border-color: transparent;
+  }
+
+  .va-chart-button:hover {
+    background: var(--va-surface-soft);
+  }
+
+  .va-chart-button.is-selected {
+    border-color: var(--va-focus);
+    background: var(--va-focus-soft);
+  }
+
+  .va-dashboard {
+    @apply min-w-0 grid gap-4;
+  }
+
+  .va-hero {
+    @apply rounded-md border bg-white p-5;
+    border-color: var(--va-border);
+    border-left: 4px solid var(--va-focus);
+  }
+
+  .va-workspace-grid {
+    @apply grid min-w-0 grid-cols-1 items-stretch gap-4 xl:grid-cols-[minmax(0,1.18fr)_minmax(420px,0.82fr)];
+  }
+
+  .va-workspace-side {
+    @apply grid min-w-0 content-start gap-4;
+  }
+
+  @media (min-width: 1280px) {
+    .va-workspace-side {
+      grid-template-rows: auto minmax(460px, 1fr);
+    }
+  }
+
+  .va-support-grid {
+    @apply grid min-w-0 grid-cols-1 items-stretch gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(430px,0.95fr)];
+  }
+
+  .va-detail-box {
+    @apply rounded bg-slate-50 p-3;
+  }
+
+  .va-warning-note {
+    @apply rounded px-3 py-2 text-sm;
+    background: #fffbeb;
+    color: var(--va-risk);
+  }
+
+  @media (max-width: 480px) {
+    .va-brand-title,
+    .va-panel-copy,
+    .va-hero h2 {
+      overflow-wrap: anywhere;
+    }
+
+    .va-card-pad {
+      @apply p-3;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
   }
 }
