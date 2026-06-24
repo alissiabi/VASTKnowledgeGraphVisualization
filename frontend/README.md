@@ -28,7 +28,10 @@ npm audit
 ## Structure
 
 - `src/components/Dashboard.vue`: analytical state and linked-view coordination;
+- `src/components/RelationshipPatternExplorer.vue`: source type -> relationship type -> target type overview;
+- `src/components/NodeLinkDiagram.vue`: filtered induced graph for topology inspection;
 - `src/components/EgoNetwork.vue`: directed radial network with zoom, pan, and evidence selection;
+- `src/components/EvidenceTable.vue`: observed relationship records for verification;
 - `src/data/graphTransforms.js`: lossless normalization of the official graph;
 - `src/data/relationshipSemantics.js`: shared MC1 relationship taxonomy;
 - `src/data/metrics.js`: transparent derived summaries and graph traversal;
